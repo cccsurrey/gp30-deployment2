@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import os
 
 ##########################
-SECRET = os.environ("HF")
+SECRET = os.environ["HF"]
 headers = {"Authorization": "Bearer " + SECRET}
 API_URL = "https://api-inference.huggingface.co/models/cccmatthew/surrey-gp30"
 ##########################
