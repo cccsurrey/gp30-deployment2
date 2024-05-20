@@ -5,9 +5,11 @@ import datetime
 import time
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 ##########################
-headers = {"Authorization": "Bearer "}
+SECRET = os.environ("HF")
+headers = {"Authorization": "Bearer " + SECRET}
 API_URL = "https://api-inference.huggingface.co/models/cccmatthew/surrey-gp30"
 ##########################
 
