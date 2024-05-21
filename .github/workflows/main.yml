@@ -46,11 +46,11 @@ jobs:
       - name: Add remote 
         env:
           HF: ${{ secrets.HF }}
-        run: git remote add space https://cccmatthew:$HF@huggingface.co/spaces/cccmatthew/gp30-deployment
+        run: git remote add space https://cccmatthew:$HF@huggingface.co/spaces/cccmatthew/gp30-dev
       - name: Push to hub
         env:
           HF: ${{ secrets.HF }}
-        run: git push --force https://cccmatthew:$HF@huggingface.co/spaces/cccmatthew/gp30-deployment main
+        run: git push --force https://cccmatthew:$HF@huggingface.co/spaces/cccmatthew/gp30-dev main
 
   DeployProd:
     name: Deploy to Production 
