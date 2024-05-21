@@ -10,17 +10,58 @@ env:
   api_secret: ${{ secrets.HF }}
 
 jobs:
-  sync-to-hub:
+  Build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
+      # Set up Python 3.11 environment
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
         with:
-          fetch-depth: 0
+          python-version: "3.11"
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Model Testing
+        run: |
+          python3 inference.py
+  
+  DeployDev:
+    name: Deploy to Dev 
+    if: github.event_name == 'pull_request'
+    needs: [Build]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Dev
+      url: 'https://huggingface.co/spaces/cccmatthew/gp30-dev'
+    steps:
+      - name: Add remote 
+        env:
+          HF: ${{ secrets.HF }}
+        run: git remote add space https://cccmatthew:$HF@huggingface.co/spaces/cccmatthew/gp30-dev
+      - name: Deploy
+        env:
+          HF: ${{ secrets.HF }}
+        run: git push --force https://cccmatthew:$HF@huggingface.co/spaces/cccmatthew/gp30-dev main
+
+  DeployProd:
+    name: Deploy to Production 
+    needs: [DeployStaging]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Prod
+      url: 'https://huggingface.co/spaces/cccmatthew/gp30-deployment'
+    steps:
       - name: Add remote 
         env:
           HF: ${{ secrets.HF }}
         run: git remote add space https://cccmatthew:$HF@huggingface.co/spaces/cccmatthew/gp30-deployment
-      - name: Push to hub
+      - name: Deploy
         env:
           HF: ${{ secrets.HF }}
         run: git push --force https://cccmatthew:$HF@huggingface.co/spaces/cccmatthew/gp30-deployment main
