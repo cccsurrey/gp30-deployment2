@@ -62,7 +62,7 @@ example_sentences = [
 sentence = st.selectbox('Choose an example sentence or type your own below:', example_sentences + ['Custom Input...'])
 
 if sentence == 'Custom Input...':
-    sentence = st.text_input('Input your sentence here:', '')
+    sentence = st.text_input('Input your sentence here', '')
 
 def merge_entities(sentence, entities):
     entities = sorted(entities, key=lambda x: x['start'])
