@@ -39,18 +39,18 @@ jobs:
     name: Deploy to Development
     needs: [Build]
     runs-on: ubuntu-latest
-    environment: 
-      name: Dev
-      url: 'https://huggingface.co/spaces/cccmatthew/gp30-dev'
+    # environment: 
+    #   name: Dev
+    #   url: 'https://huggingface.co/spaces/cccmatthew/gp30-dev'
     steps:
       - name: Add remote 
         env:
           HF: ${{ secrets.HF }}
-        run: git remote add space https://cccmatthew:$HF@huggingface.co/spaces/cccmatthew/gp30-deployment
+        run: git remote add space https://cccmatthew:$HF@huggingface.co/spaces/cccmatthew/gp30-dev
       - name: Deploy
         env:
           HF: ${{ secrets.HF }}
-        run: git push --force https://cccmatthew:$HF@huggingface.co/spaces/cccmatthew/gp30-deployment main
+        run: git push --force https://cccmatthew:$HF@huggingface.co/spaces/cccmatthew/gp30-dev main
 
   DeployProd:
     name: Deploy to Production 
