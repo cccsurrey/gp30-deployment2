@@ -35,9 +35,8 @@ jobs:
         run: |
           python3 inference.py
   
-  DeployStaging:
-    name: Deploy to Staging
-    if: github.event.ref == 'refs/head/main'
+  DeployDev:
+    name: Deploy to Development
     needs: [Build]
     runs-on: ubuntu-latest
     environment:
