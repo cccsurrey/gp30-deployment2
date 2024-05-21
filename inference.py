@@ -33,7 +33,7 @@ def send_request_with_retry(url, headers, json_data, retries=3, backoff_factor=1
             else:
                 raise
         except (requests.exceptions.ConnectionError, requests.exceptions.Timeout) as e:
-            st.info(f"Network issues ({str(e)}), retrying...")
+            st.info(f"Network issue ({str(e)}), retrying...")
         time.sleep(backoff_factor * (2 ** attempt))
 
     st.error("Failed to process request after several attempts.")
