@@ -1,7 +1,11 @@
 name: Sync to Hugging Face hub
 on:
   push:
-    branches: [main]
+    branches:
+    - main
+  pull_request:
+    branches:
+      - main
 
   # to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -32,7 +36,7 @@ jobs:
           python3 inference.py
   
   DeployDev:
-    name: Deploy to Dev 
+    name: Deploy to Development
     if: github.event_name == 'pull_request'
     needs: [Build]
     runs-on: ubuntu-latest
