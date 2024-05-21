@@ -52,8 +52,6 @@ response, response_time = send_request_with_retry(API_URL, headers, {"inputs": s
 if response is not None:
     results = response.json()
     print(results)
-    st.write('Results:')
-    log_to_csv(sentence, results, response_time)
 
 else:
     st.error("Unable to classify the sentence due to server issues.")
