@@ -116,6 +116,6 @@ if st.button('Classify'):
         st.error('Please enter a sentence.')
 
 #Separate button to just plot the response time
-if st.button('Show Response Times'):
+if st.button('Show Response Time'):
     df = load_response_times()
     plot_response_times(df)
