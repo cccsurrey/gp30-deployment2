@@ -9,4 +9,4 @@ pinned: false
 ---
 
 # Name Entity Recognition
-Group 30 Demo 
+Group 30 Demo 1
