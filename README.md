@@ -8,5 +8,5 @@ app_file: app.py
 pinned: false
 ---
 
-# image2textapp
-Group 30 Demo - Name Entity Recognition 
+# Name Entity Recognition
+Group 30 Demo 
