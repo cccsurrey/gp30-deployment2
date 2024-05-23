@@ -75,7 +75,7 @@ def merge_entities(sentence, entities):
     annotated_sentence += sentence[last_end:]
     return annotated_sentence
 
-def send_request_with_retry(url, headers, json_data, retries=3, backoff_factor=3):
+def send_request_with_retry(url, headers, json_data, retries=5, backoff_factor=10):
     """Send request with retries on timeouts and HTTP 503 errors."""
     for attempt in range(retries):
         start_time = time.time()
