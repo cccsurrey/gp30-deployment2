@@ -6,7 +6,7 @@ import os
 ##########################
 SECRET = os.environ["api_secret"]
 headers = {"Authorization": "Bearer " + SECRET}
-API_URL = "https://api-inference.huggingface.co/models/cccmatthew/surrey-gp30"
+API_URL = "https://api-inference.huggingface.co/models/cccmatthew/model_test"
 ##########################
 
 def send_request_with_retry(url, headers, json_data, retries=3, backoff_factor=1):
